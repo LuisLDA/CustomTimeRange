@@ -20,7 +20,13 @@ export const CustomTimeSelect = ({ toggleFilter }: { toggleFilter: any }) => {
                     console.log(e)
                     if (e) {
                         const start = e[0]!!.toISOString().split('T')[0] + 'T00:00:00'
-                        const end = e[1]!!.toISOString().split('T')[0] + 'T23:59:59'
+                        // Convertir end a un objeto Date
+                        //@ts-ignore
+                        let endDate = new Date(e[1]!!)
+                        // Sumar un día
+                        endDate.setDate(endDate.getDate() + 1)
+                        // Convertir de nuevo a cadena ISO y formatear
+                        const end = endDate.toISOString().split('T')[0] + 'T00:00:00'
                         console.log(start, end)
                         toggleFilter('time_range', `${start} : ${end}`)
                     }
