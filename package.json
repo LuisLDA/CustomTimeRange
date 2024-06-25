@@ -1,0 +1,47 @@
+{
+  "name": "custom-time-range",
+  "version": "0.1.0",
+  "description": "Filtro de fechas que es un plugin realmente.",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "files": [
+    "esm",
+    "lib"
+  ],
+  "private": true,
+  "scripts": {
+    "build": "npm run build-cjs && npm run build-esm && npm run ts-types",
+    "build-cjs": "babel src --extensions \".ts,.tsx,.js,.jsx\" --copy-files --out-dir lib",
+    "build-clean": "npm run clean && npm run build",
+    "build-esm": "BABEL_OUTPUT=esm babel src --extensions \".ts,.tsx,.js,.jsx\" --copy-files --out-dir esm",
+    "dev": "BABEL_OUTPUT=esm babel src --extensions \".ts,.tsx,.js,.jsx\" --watch --copy-files --out-dir esm",
+    "prebuild": "rimraf {lib,esm,tsconfig.tsbuildinfo}",
+    "postbuild": "npm run test",
+    "ts-types": "tsc --build",
+    "test": "jest"
+  },
+  "author": "My Name",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@types/react": "^18.3.3",
+    "antd": "^5.18.3",
+    "moment": "^2.30.1"
+  },
+  "peerDependencies": {
+    "@superset-ui/chart-controls": "*",
+    "@superset-ui/core": "*",
+    "react": "*"
+  },
+  "devDependencies": {
+    "@airbnb/config-babel": "^2.0.1",
+    "@babel/cli": "*",
+    "@types/jest": "*",
+    "jest": "*",
+    "rimraf": "*",
+    "typescript": "*"
+  }
+}
