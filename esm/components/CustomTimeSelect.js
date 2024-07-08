@@ -10,7 +10,9 @@ export var CustomTimeSelect = _ref => {
   } = _ref;
   useEffect(() => {
     // Directamente usando moment, sin convertir a dayjs
-    toggleFilter('time_range', moment().subtract(1, 'months').toISOString() + " : " + moment().toISOString());
+    var dateInit = moment().subtract(1, 'months').toISOString() + " : " + moment().add(1, 'days').toISOString();
+    toggleFilter('time_range', dateInit);
+    console.log('Time Range initial', dateInit);
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(RangePicker, {
     allowClear: false,
